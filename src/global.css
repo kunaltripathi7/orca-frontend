@@ -11,6 +11,7 @@ body,
 @layer base {
   :root {
     --background: 0 0% 100%;
+    --main:
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -70,7 +71,12 @@ body,
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: "Open Sans", sans-serif;
+    background-color: #ffff;
   }
+}
+
+.dark body {
+  background-color: #17181e;
 }

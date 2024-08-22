@@ -1,13 +1,7 @@
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import InitialProfile from "@/features/server/InitialProfile";
 
 function Homepage() {
-  return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
-      <Hero />
-    </div>
-  );
+  return <InitialProfile />;
 }
 
 export default Homepage;
