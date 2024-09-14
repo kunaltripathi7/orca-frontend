@@ -4,13 +4,16 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import PageNotFound from "./pages/PageNotFound";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
-import LoginPage from "./pages/LoginPage";
 import Landingpage from "./pages/Landingpage";
 import Homepage from "./pages/Homepage";
 import Server from "./pages/Server";
 import { Toaster } from "./components/ui/toaster";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AppLayout from "./components/AppLayout";
+import { ModalProvider } from "./components/providers/ModalProvider";
+import ServerInvite from "./pages/ServerInvite";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,12 +31,30 @@ function App() {
           <ReactQueryDevtools />
           <Toaster />
           <BrowserRouter>
+            <ModalProvider />
             <Routes>
-              <Route path="login" element={<LoginPage />} />
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                {/* index -> parent route */}
+                {/* <Route index element={<Landingpage />} /> */}
+                <Route path="server/:serverId" element={<Server />} />
+              </Route>
+              <Route
+                path="app"
+                element={
+                  <ProtectedRoute>
+                    <Homepage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="invite/:inviteCode" element={<ServerInvite />} />
               <Route path="/" element={<Landingpage />} />
-              <Route path="app" element={<Homepage />} />
               <Route path="*" element={<PageNotFound />} />
-              <Route path="server/:serverId" element={<Server />} />
             </Routes>
           </BrowserRouter>
         </QueryClientProvider>

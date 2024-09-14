@@ -73,6 +73,7 @@ module.exports = {
       },
       fontFamily: {
         "open-sans": ["open-sans", "sans-serif"],
+        lato: ["lato", "sans-serif"],
       },
     },
   },

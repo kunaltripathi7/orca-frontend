@@ -1,22 +1,30 @@
 import { PropagateLoader } from "react-spinners";
 
 import { useUser } from "../auth/useUser";
-import CreateServerModal from "./CreateServerModal";
-import { useServer } from "@/features/server/useServer";
+import InitialModal from "../Modals/InitialModal";
+import { useAllServers } from "@/features/server/useAllServers";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function InitialProfile() {
   const { isLoading: isUserLoading } = useUser();
-  const { isLoading: isServerLoading } = useServer();
+  const { isLoading: isServerLoading, servers } = useAllServers();
+  const navigate = useNavigate();
   const isLoading = isServerLoading || isUserLoading;
 
+  useEffect(() => {
+    if (servers && servers.length > 0)
+      navigate(`/server/${servers[0].id}`, { replace: true });
+  }, [servers, navigate]);
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      {isLoading ? (
+    <>
+      {isLoading || (servers && servers.length > 0) ? (
         <PropagateLoader color="#AF79F9" size={15} />
       ) : (
-        <CreateServerModal />
+        <InitialModal />
       )}
-    </div>
+    </>
   );
 }
 

@@ -10,17 +10,20 @@ import logoImage from "../assets/images/logo.png";
 const FORCE_REDIRECT_URL = import.meta.env.VITE_CLERK_FORCE_REDIRECT_URL;
 
 function Navbar() {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
   return (
-    <div className="container h-20 flex flex-row justify-between items-center min-w-[350px]">
-      <div className="flex gap-4 items-center">
-        <img src={logoImage} alt="Brand Logo" className="h-12 w-12 mt-2" />
-        <span className="text-5xl text-[#AF79F9] font-bold">Orca</span>
+    <div className="container flex h-20 min-w-[350px] flex-row items-center justify-between">
+      <div className="flex items-center gap-4">
+        <img src={logoImage} alt="Brand Logo" className="mt-2 h-12 w-12" />
+        <span className="text-5xl font-bold text-[#AF79F9]">Orca</span>
       </div>
+
       <div
-        className={` mt-3 ${
-          !isSignedIn && " p-1.5 px-3 rounded-xl border-2 border-zinc-300"
-        }`}
+        className={
+          isLoaded
+            ? `mt-3 ${!isSignedIn && "rounded-md bg-[#AF79F9]/90 px-3 py-2 text-zinc-100"}`
+            : ""
+        }
       >
         <SignedOut>
           <SignInButton

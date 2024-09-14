@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import { ErrorBoundary } from "react-error-boundary";
 import App from "./App";
 import ErrorFallBack from "./components/ErrorFallBack";
+import { dark } from "@clerk/themes";
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -19,9 +20,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       FallbackComponent={ErrorFallBack}
       onReset={() => window.location.replace("/")}
     >
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+      <ClerkProvider
+        publishableKey={PUBLISHABLE_KEY}
+        afterSignOutUrl="/"
+        appearance={{
+          baseTheme: dark,
+        }}
+      >
         <App />
       </ClerkProvider>
     </ErrorBoundary>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

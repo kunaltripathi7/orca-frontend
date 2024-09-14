@@ -1,11 +1,11 @@
 import { TokenType, User } from "@/utils/types";
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function getCurrentUserRequest(
   userProfile: User | undefined,
-  getToken: TokenType
+  getToken: TokenType,
 ) {
   if (!userProfile) return null;
   try {

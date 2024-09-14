@@ -18,8 +18,13 @@ export type UserProfile = {
 export type ErrorType = {
   message: string;
   errorCode: ErrorCode;
-  statusCode: number;
-  errors: object;
+  statusCode?: number;
+  errors: ErrorObjectType;
+};
+
+export type ErrorObjectType = {
+  name?: string;
+  code?: string;
 };
 
 export enum ErrorCode {
@@ -38,6 +43,53 @@ export type ServerType = {
   imageUrl: string;
   inviteCode: string;
   profileId: string;
+  createdAt: string;
+  updatedAt: string;
+  channels?: ChannelType[];
+  members?: MemberType[];
+};
+export type ServerWithMembersWithProfiles = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  inviteCode: string;
+  profileId: string;
+  createdAt: string;
+  updatedAt: string;
+  channels: ChannelType[];
+  members: MemberType[];
 };
 
 export type TokenType = () => Promise<string | null>;
+
+export enum ChannelModeType {
+  TEXT = "TEXT",
+  AUDIO = "AUDIO",
+  VIDEO = "VIDEO",
+}
+
+export type ChannelType = {
+  createdAt: string;
+  id: string;
+  name: string;
+  profileId: string;
+  serverId: string;
+  type: ChannelModeType;
+  updatedAt: string;
+};
+
+export type MemberType = {
+  id: string;
+  profile: UserProfile;
+  profileId: string;
+  role: MemberRole;
+  serverId: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export enum MemberRole {
+  ADMIN = "ADMIN",
+  MODERATOR = "MODERATOR",
+  GUEST = "GUEST",
+}

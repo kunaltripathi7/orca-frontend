@@ -10,10 +10,13 @@ import { Input } from "./input";
 
 type Props = {
   isSubmitting: boolean;
+  imageUrl?: string;
 };
 
-function MyDropzone({ isSubmitting }: Props) {
-  const [filePreview, setFilePreview] = useState<string>();
+function MyDropzone({ isSubmitting, imageUrl }: Props) {
+  const [filePreview, setFilePreview] = useState<string>(() =>
+    imageUrl ? imageUrl : "",
+  );
   const [isRejected, setIsRejected] = useState<boolean>(false);
 
   const { control, setValue } = useFormContext();
@@ -74,10 +77,10 @@ function MyDropzone({ isSubmitting }: Props) {
           />
         </div>
       ) : (
-        <div className="rounded-xl bg-stone-100/50">
+        <div className="rounded-xl bg-[#5b618f]">
           <div
             {...getRootProps({ className: "dropzone" })}
-            className={`m-4 rounded-lg border-2 border-dashed border-zinc-400 bg-zinc-200 px-2 py-10 ${isDragActive && "border-3 border-[#7F56D9]"} ${
+            className={`m-4 rounded-lg border-2 border-dashed border-zinc-400 bg-[#414568] px-2 py-10 ${isDragActive && "border-3 border-[#7F56D9]"} ${
               isRejected && "border-red-500"
             }`}
           >
@@ -86,9 +89,9 @@ function MyDropzone({ isSubmitting }: Props) {
               <div className="flex flex-col items-center px-8">
                 <FaFileUpload className="text-3xl text-[#7F56D9]" />
                 {isDragActive ? (
-                  <p className="text-zinc-350">Drop the file here ...</p>
+                  <p className="text-zinc-100">Drop the file here ...</p>
                 ) : (
-                  <p className="text-zinc-600">Drag & drop the file here</p>
+                  <p className="text-zinc-100">Drag & drop the file here</p>
                 )}
               </div>
               <Separator className="w-64 bg-zinc-300 py-[0.8px]" />
@@ -112,7 +115,7 @@ function MyDropzone({ isSubmitting }: Props) {
             <FormControl>
               <Input className="hidden" type="file" />
             </FormControl>
-            <FormMessage />
+            <FormMessage className="text-red-500" />
           </FormItem>
         )}
       />

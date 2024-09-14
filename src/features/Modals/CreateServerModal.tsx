@@ -24,9 +24,11 @@ import { Input } from "@/components/ui/input";
 import { FaServer } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import MyDropzone from "@/components/ui/dropzone";
-import { useCreateServer } from "./useCreateServer";
-
-export type ServerData = z.infer<typeof formSchema>;
+import { useCreateServer } from "../server/useCreateServer";
+import { ServerData } from "./InitialModal";
+import { useModal } from "./useModal";
+import { useDispatch } from "react-redux";
+import { closeModal } from "./modalSlice";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -37,6 +39,14 @@ const formSchema = z.object({
 
 const CreateServerModal = () => {
   const { createServer, isLoading: isServerLoading } = useCreateServer();
+  const { isOpen, type } = useModal();
+  const dispatch = useDispatch();
+
+  const isModalOpen = isOpen && type === "createServer";
+  const handleClose = () => {
+    form.reset();
+    dispatch(closeModal());
+  };
 
   const form = useForm<ServerData>({
     resolver: zodResolver(formSchema),
@@ -55,14 +65,14 @@ const CreateServerModal = () => {
   };
 
   return (
-    <Dialog open>
-      <DialogContent className="overflow-hidden border-none bg-white text-black">
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
+      <DialogContent className="overflow-hidden border-none bg-[#12161B] text-[#EAEBEC]">
         <DialogHeader>
           <DialogTitle className="mb-2 flex gap-24 text-2xl font-bold">
             <FaServer className="text-[#AF79F9]" />
             <span>Create your Server</span>
           </DialogTitle>
-          <DialogDescription className="text-balance text-center tracking-wide">
+          <DialogDescription className="text-balance text-center tracking-wide text-zinc-300">
             Give your server a personality with a name and an image. You can
             always change it later.
           </DialogDescription>
@@ -78,18 +88,18 @@ const CreateServerModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-200">
                       Server name
                     </FormLabel>
                     <FormControl>
                       <Input
                         disabled={isFormLoading}
-                        className="border-zinc-300 shadow-md focus-visible:border-[#AF79F9]"
+                        className="bg-[#504665] text-zinc-100 shadow-xl focus-visible:border-[#AF79F9]"
                         placeholder="Enter server name"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />

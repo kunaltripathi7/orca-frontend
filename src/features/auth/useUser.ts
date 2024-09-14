@@ -2,8 +2,6 @@ import { toast } from "@/components/ui/use-toast";
 import { getCurrentUserRequest } from "@/services/apiUser";
 import { useAuth, useUser as useProfile } from "@clerk/clerk-react";
 import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
-import { inflate } from "./authSlice";
 
 export type User = {
   id: string;
@@ -15,7 +13,6 @@ export type User = {
 export function useUser() {
   const { user, isLoaded: isClerkLoaded } = useProfile();
   const { getToken } = useAuth();
-  const dispatch = useDispatch();
 
   const userProfile: User | undefined = user
     ? {
@@ -32,10 +29,9 @@ export function useUser() {
     () => getCurrentUserRequest(userProfile, getToken),
     {
       enabled: !!userProfile,
-      onError: () => {
-        toast({ description: "Error getting User" });
+      onError: (error: Error) => {
+        toast({ description: error.message });
       },
-      onSuccess: (user) => dispatch(inflate(user)),
     },
   );
 
