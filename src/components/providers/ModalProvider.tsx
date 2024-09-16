@@ -1,5 +1,6 @@
 import CreateChannelModal from "@/features/Modals/CreateChannelModal";
 import CreateServerModal from "@/features/Modals/CreateServerModal";
+import DeleteChannelModal from "@/features/Modals/DeleteChannelModal";
 import DeleteServerModal from "@/features/Modals/DeleteServerModal";
 import EditServerModal from "@/features/Modals/EditServerModal";
 import InviteServerModal from "@/features/Modals/InviteServerModal";
@@ -16,6 +17,7 @@ export const ModalProvider = () => {
       <ManageMembersModal />
       <LeaveServerModal />
       <DeleteServerModal />
+      <DeleteChannelModal />
     </>
   );
 };

@@ -3,7 +3,9 @@ import { IconMap } from "@/components/ServerSidebar";
 import { cn } from "@/lib/utils";
 import { ChannelType, MemberRole } from "@/utils/types";
 import { Edit, Lock, Trash } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { openModal } from "../Modals/modalSlice";
 
 interface Props {
   channel: ChannelType;
@@ -14,6 +16,7 @@ interface Props {
 const ServerChannel = ({ channel, role, iconMap }: Props) => {
   const icon = iconMap[channel.type];
   const { channelId } = useParams();
+  const dispatch = useDispatch();
   return (
     <button
       onClick={() => {}}
@@ -37,7 +40,12 @@ const ServerChannel = ({ channel, role, iconMap }: Props) => {
             <Edit className="hidden h-4 w-4 text-stone-200 transition hover:text-white group-hover:block" />
           </ActionTooltip>
           <ActionTooltip label="Delete">
-            <Trash className="hidden h-4 w-4 text-stone-200 transition hover:text-white group-hover:block" />
+            <Trash
+              className="hidden h-4 w-4 text-stone-200 transition hover:text-white group-hover:block"
+              onClick={() =>
+                dispatch(openModal({ type: "deleteChannel", channel }))
+              }
+            />
           </ActionTooltip>
         </div>
       )}

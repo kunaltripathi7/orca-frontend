@@ -1,4 +1,4 @@
-import { ChannelModeType, ServerType } from "@/utils/types";
+import { ChannelModeType, ChannelType, ServerType } from "@/utils/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ModalType =
@@ -8,7 +8,8 @@ export type ModalType =
   | "manageMembers"
   | "createChannel"
   | "leaveServer"
-  | "deleteServer";
+  | "deleteServer"
+  | "deleteChannel";
 // export type OnCloseType = () => void;
 
 export interface AuthState {
@@ -16,6 +17,7 @@ export interface AuthState {
   type: ModalType | null;
   server?: ServerType;
   channelType?: ChannelModeType;
+  channel?: ChannelType;
   // onClose: OnCloseType | null;
 }
 
@@ -24,6 +26,7 @@ const initialState: AuthState = {
   type: null,
   server: undefined,
   channelType: undefined,
+  channel: undefined,
   // onClose: null,
 };
 
@@ -31,6 +34,7 @@ interface OpenModalPayload {
   type: ModalType;
   server?: ServerType;
   channelType?: ChannelModeType;
+  channel?: ChannelType;
 }
 
 export const modalSlice = createSlice({
@@ -42,12 +46,14 @@ export const modalSlice = createSlice({
       state.type = action.payload.type;
       state.server = action.payload.server;
       state.channelType = action.payload.channelType;
+      state.channel = action.payload.channel;
     },
     closeModal: (state) => {
       state.isOpen = false;
       state.type = null;
       state.server = undefined;
       state.channelType = undefined;
+      state.channel = undefined;
       // state.onClose = null;
     },
     // setOnClose: (state, action: PayloadAction<OnCloseType>) => {

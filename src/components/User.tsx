@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/mode-toggle";
 import { UserButton } from "@clerk/clerk-react";
 import { useState } from "react";
 
