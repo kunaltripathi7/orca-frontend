@@ -68,9 +68,9 @@ function Hero() {
             build lasting relationships all in one place.
           </p>
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex items-center justify-center">
           <button
-            className="rounded-lg bg-[#AF79F9] px-5 py-3 font-medium text-white"
+            className="text- rounded-lg bg-[#EDEDED] px-5 py-3 font-semibold text-black hover:bg-stone-200"
             onClick={handleGetStartedClick}
           >
             Get Started

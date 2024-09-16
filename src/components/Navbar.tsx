@@ -21,7 +21,7 @@ function Navbar() {
       <div
         className={
           isLoaded
-            ? `mt-3 ${!isSignedIn && "rounded-md bg-[#AF79F9]/90 px-3 py-2 text-zinc-100"}`
+            ? `mt-3 ${!isSignedIn && "rounded-md bg-[#EDEDED] px-4 py-2 font-semibold text-black"}`
             : ""
         }
       >
