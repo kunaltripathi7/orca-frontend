@@ -27,11 +27,13 @@ const NavigationSidebar = () => {
               className="my-4"
             />
           ) : (
-            <>
-              <NavigationServerConfig />
-              <Separator className="mb-2 mt-4 h-[1px] w-12 bg-purple-400" />
-              {servers && <Servers servers={servers} />}
-            </>
+            <NavigationServerConfig>
+              <>
+                <Separator className="mb-1 mt-3 h-[1px] w-12 bg-purple-400" />
+                {servers && <Servers servers={servers} />}
+                <Separator className="my-2 h-[1px] w-12 bg-stone-400" />
+              </>
+            </NavigationServerConfig>
           )}
         </div>
       </div>

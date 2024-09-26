@@ -1,19 +1,17 @@
 import ServerSidebar from "@/components/ServerSidebar";
-import MemberSidebar from "@/features/members/MemberSidebar";
-import ServerNavbar from "@/features/server/ServerNavbar";
 import { useGetServer } from "@/features/server/useGetServer";
 import {
   ChannelModeType,
   ChannelType,
-  MemberRole,
   MemberType,
   ServerType,
 } from "@/utils/types";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useMemo } from "react";
 
-import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+import { Hash, Mic, Video } from "lucide-react";
 import { useUser } from "@/features/auth/useUser";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Server() {
   const {
@@ -24,9 +22,9 @@ function Server() {
     isLoading: boolean;
   } = useGetServer();
 
-  const [open, setOpen] = useState<boolean>(false);
   const { isLoading: isUserLoading, currentUser } = useUser();
   const isLoading = isUserLoading || isServerLoading;
+  const navigate = useNavigate();
 
   const textChannels = useMemo(
     () =>
@@ -74,13 +72,14 @@ function Server() {
     [ChannelModeType.VIDEO]: <Video className="mr-2 h-4 w-4" />,
   };
 
-  const roleIconMap = {
-    [MemberRole.GUEST]: null,
-    [MemberRole.MODERATOR]: (
-      <ShieldCheck className="mr-2 h-4 w-4 text-[#AF79F9]" />
-    ),
-    [MemberRole.ADMIN]: <ShieldAlert className="mr-2 h-4 w-4 text-rose-500" />,
-  };
+  useEffect(() => {
+    if (server) {
+      const channelId = server?.channels?.find(
+        (channel) => channel?.name === "general",
+      )?.id;
+      navigate(`channels/${channelId}`);
+    }
+  }, [server, navigate]);
 
   return (
     <>
@@ -95,57 +94,16 @@ function Server() {
         }}
       />
       <div className="flex w-full flex-col">
-        <ServerNavbar
-          label="channel"
-          handleSidebar={setOpen}
-          dataObj={[
-            {
-              description: "Text Channels",
-              type: "channel",
-              data: textChannels?.map((channel) => ({
-                id: channel.id,
-                name: channel.name,
-                icon: iconMap[channel.type],
-              })),
-            },
-            {
-              description: "Voice Channels",
-              type: "channel",
-              data: audioChannels?.map((channel) => ({
-                id: channel.id,
-                name: channel.name,
-                icon: iconMap[channel.type],
-              })),
-            },
-            {
-              description: "Video Channels",
-              type: "channel",
-              data: videoChannels?.map((channel) => ({
-                id: channel.id,
-                name: channel.name,
-                icon: iconMap[channel.type],
-              })),
-            },
-            {
-              description: "Members",
-              type: "member",
-              data: members?.map((member) => ({
-                id: member.id,
-                name: member.profile.name,
-                icon: roleIconMap[member.role],
-              })),
-            },
-          ]}
-        />
         <div className="flex h-full">
-          <div className="h-full w-full bg-[#1D203E]"></div>
-          {open && (
-            <MemberSidebar
-              members={members}
-              isLoading={isLoading}
-              roleIconMap={roleIconMap}
-            />
-          )}
+          <Outlet
+            context={{
+              videoChannels,
+              audioChannels,
+              textChannels,
+              members,
+              iconMap,
+            }}
+          />
         </div>
       </div>
     </>

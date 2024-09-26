@@ -25,7 +25,6 @@ import { useModal } from "./useModal";
 import { useDispatch } from "react-redux";
 import { closeModal } from "./modalSlice";
 import { ChannelModeType } from "@/utils/types";
-import { RiWechatChannelsLine } from "react-icons/ri";
 import {
   Select,
   SelectContent,
@@ -33,10 +32,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCreateChannel } from "../channels/useCreateChannel";
-import { matchPath, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useEditChannel } from "../channels/useEditChannel";
+import { FaEdit } from "react-icons/fa";
 
 export type ChannelData = z.infer<typeof formSchema>;
 
@@ -55,15 +54,11 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelModeType),
 });
 
-const CreateChannelModal = () => {
-  const { createChannel, isChannelLoading } = useCreateChannel();
-  const { isOpen, type, channelType } = useModal();
+const EditChannelModal = () => {
+  const { editChannel, isChannelLoading } = useEditChannel();
+  const { isOpen, type, server, channel } = useModal();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const match = matchPath({ path: "/server/:serverId" }, location.pathname);
-
-  const isModalOpen = isOpen && type === "createChannel";
-
+  const isModalOpen = isOpen && type === "editChannel";
   const handleClose = () => {
     form.reset();
     dispatch(closeModal());
@@ -72,8 +67,8 @@ const CreateChannelModal = () => {
   const form = useForm<ChannelData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      type: ChannelModeType.TEXT,
+      name: channel?.name,
+      type: channel?.type,
     },
   });
 
@@ -83,25 +78,31 @@ const CreateChannelModal = () => {
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("type", values.type);
-    createChannel({ serverId: match?.params.serverId, channelData: formData });
+    editChannel({
+      serverId: server?.id,
+      channelData: formData,
+      channelId: channel?.id,
+    });
   };
 
   useEffect(() => {
-    if (channelType) form.setValue("type", channelType);
-    else form.setValue("type", ChannelModeType.TEXT);
-  }, [channelType, form]);
+    if (channel) {
+      form.setValue("name", channel?.name);
+      form.setValue("type", channel?.type);
+    }
+  }, [form, channel]);
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent
         className="overflow-hidden border-none bg-[#12161B] text-[#EAEBEC]"
-        aria-describedby="Create-Channel-Modal"
-        aria-description="Create-Channel"
+        aria-describedby="Edit-Channel-Modal"
+        aria-description="Edit-Channel"
       >
         <DialogHeader>
           <DialogTitle className="mb-2 flex items-center gap-4 text-2xl font-bold">
-            <RiWechatChannelsLine className="h-7 w-7 text-[#AF79F9]" />
-            <span>Create a channel</span>
+            <FaEdit className="h-5 w-5 text-[#AF79F9]" />
+            <span>Edit channel</span>
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -175,7 +176,7 @@ const CreateChannelModal = () => {
                 className="mr-6"
                 disabled={isFormLoading}
               >
-                Create
+                Save Changes
               </Button>
             </DialogFooter>
           </form>
@@ -185,4 +186,4 @@ const CreateChannelModal = () => {
   );
 };
 
-export default CreateChannelModal;
+export default EditChannelModal;

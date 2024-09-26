@@ -13,17 +13,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DialogTitle } from "./ui/dialog";
 
 interface Props {
-  dataObj: {
-    description: string;
-    type: "channel" | "member";
-    data:
-      | {
-          icon: React.ReactNode;
-          name: string;
-          id: string;
-        }[]
-      | undefined;
-  }[];
+  dataObj:
+    | {
+        description: string;
+        type: "channel" | "member";
+        data:
+          | {
+              icon: React.ReactNode;
+              name: string;
+              id: string;
+            }[]
+          | undefined;
+      }[]
+    | undefined;
 }
 
 const ServerSearch = ({ dataObj }: Props) => {
@@ -66,7 +68,7 @@ const ServerSearch = ({ dataObj }: Props) => {
         <CommandInput placeholder="Search all Channels and members" />
         <CommandList className="py-2 text-center">
           <CommandEmpty>No Results Found</CommandEmpty>
-          {dataObj.map(({ description, type, data }) => {
+          {dataObj?.map(({ description, type, data }) => {
             if (!data?.length) return null;
             return (
               <CommandGroup

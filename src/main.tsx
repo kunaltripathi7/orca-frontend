@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary
       FallbackComponent={ErrorFallBack}
-      onReset={() => window.location.replace("/")}
+      onReset={() => window.location.reload()}
     >
       <ClerkProvider
         publishableKey={PUBLISHABLE_KEY}

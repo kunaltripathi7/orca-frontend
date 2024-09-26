@@ -10,7 +10,7 @@ export async function createChannelRequest(
 ): Promise<ServerType | undefined> {
   if (!serverId) return;
   const url = qs.stringifyUrl({
-    url: `${API_BASE_URL}/api/channel`,
+    url: `${API_BASE_URL}/api/channels`,
     query: {
       serverId,
     },
@@ -35,7 +35,7 @@ export async function deleteChannelRequest(
   if (!serverId) return;
 
   const url = qs.stringifyUrl({
-    url: `${API_BASE_URL}/api/channel/${channelId}`,
+    url: `${API_BASE_URL}/api/channels/${channelId}`,
     query: {
       serverId,
     },
@@ -50,5 +50,54 @@ export async function deleteChannelRequest(
     return res.data;
   } catch (error) {
     throw new Error("Couldn't able to delete the channel at this moment!");
+  }
+}
+
+export async function editChannelRequest(
+  serverId: string | undefined,
+  channelId: string | undefined,
+  channelData: FormData,
+  getToken: TokenType,
+): Promise<ServerType | undefined> {
+  if (!serverId || !channelId) return;
+  const url = qs.stringifyUrl({
+    url: `${API_BASE_URL}/api/channels/${channelId}`,
+    query: {
+      serverId,
+    },
+  });
+  try {
+    const res = await axios.patch(url, channelData, {
+      headers: {
+        Authorization: `Bearer ${await getToken()}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    throw new Error("Couldn't able to edit channel at this moment!");
+  }
+}
+
+export async function getChannelRequest(
+  serverId: string | undefined,
+  channelId: string | undefined,
+  getToken: TokenType,
+): Promise<ServerType | undefined> {
+  if (!serverId || !channelId) return;
+  const url = qs.stringifyUrl({
+    url: `${API_BASE_URL}/api/channels/${channelId}`,
+    query: {
+      serverId,
+    },
+  });
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${await getToken()}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    throw new Error("Couldn't able to get the channel at this moment!");
   }
 }

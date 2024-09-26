@@ -34,18 +34,24 @@ interface Props {
   user: string;
 }
 
-const ServerSidebar = ({ data, isLoading, user, iconMap }: Props) => {
+const ServerSidebar = ({ data, isLoading, user, iconMap, server }: Props) => {
   const {
     channels: { textChannels, audioChannels, videoChannels },
     role,
   } = data;
 
   return (
-    <SkeletonTheme baseColor="#6c55ab">
+    <SkeletonTheme baseColor="#6c55ab" highlightColor="#8C75D1">
       <div className="hidden h-full w-[288px] flex-col bg-[#2C2F48]/50 text-primary md:flex">
         {isLoading ? (
-          <div className="mr-3 mt-2 flex justify-center">
-            <Skeleton width={200} height={25} />
+          <div className="mx-3 mt-2 flex flex-col items-start">
+            <Skeleton width={200} height={20} />
+            <Skeleton height={15} width={70} className="mt-6" />
+            <Skeleton width={200} height={15} />
+            <Skeleton height={15} width={70} className="mt-8" />
+            <Skeleton width={200} height={15} />
+            <Skeleton height={15} width={70} className="mt-8" />
+            <Skeleton width={200} height={15} />
           </div>
         ) : (
           <>
@@ -66,6 +72,7 @@ const ServerSidebar = ({ data, isLoading, user, iconMap }: Props) => {
                           channel={channel}
                           iconMap={iconMap}
                           role={role}
+                          server={server}
                         />
                       ))}
                     </div>
@@ -85,6 +92,7 @@ const ServerSidebar = ({ data, isLoading, user, iconMap }: Props) => {
                           channel={channel}
                           iconMap={iconMap}
                           role={role}
+                          server={server}
                         />
                       ))}
                     </div>
@@ -104,6 +112,7 @@ const ServerSidebar = ({ data, isLoading, user, iconMap }: Props) => {
                           channel={channel}
                           iconMap={iconMap}
                           role={role}
+                          server={server}
                         />
                       ))}
                     </div>

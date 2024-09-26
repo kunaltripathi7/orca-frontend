@@ -12,19 +12,16 @@ import { closeModal } from "./modalSlice";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { useDeleteChannel } from "../channels/useDeleteChannel";
-import { matchPath, useLocation } from "react-router-dom";
 
 const DeleteChannelModal = () => {
-  const { isOpen, type, channel } = useModal();
+  const { isOpen, type, channel, server } = useModal();
   const { deleteChannel, isLoading } = useDeleteChannel();
   const dispatch = useDispatch();
   const isModalOpen = isOpen && type === "deleteChannel";
-  const location = useLocation();
-  const match = matchPath({ path: "/server/:serverId" }, location.pathname);
 
   const handleClose = () => dispatch(closeModal());
   const handleDelete = () =>
-    deleteChannel({ serverId: match?.params.serverId, channelId: channel?.id });
+    deleteChannel({ serverId: server?.id, channelId: channel?.id });
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -33,8 +30,8 @@ const DeleteChannelModal = () => {
         aria-describedby="delete-channel-modal"
         aria-description="Delete-Channel"
       >
-        <DialogHeader className="px-6 pt-2">
-          <DialogTitle className="flex items-center gap-8 text-center text-2xl font-bold">
+        <DialogHeader className="px-6">
+          <DialogTitle className="flex items-center gap-8 py-3 text-center text-2xl font-bold">
             <RiDeleteBin5Fill className="text-[#AF79F9]" />
             <span>Delete Channel</span>
           </DialogTitle>

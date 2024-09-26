@@ -14,6 +14,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AppLayout from "./components/AppLayout";
 import { ModalProvider } from "./components/providers/ModalProvider";
 import ServerInvite from "./pages/ServerInvite";
+import ChannelPage from "./pages/ChannelPage";
+import ServerIdPage from "./pages/ServerIdPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,8 +43,10 @@ function App() {
                 }
               >
                 {/* index -> parent route */}
-                {/* <Route index element={<Landingpage />} /> */}
-                <Route path="server/:serverId" element={<Server />} />
+                <Route path="servers/:serverId" element={<Server />}>
+                  <Route index element={<ServerIdPage />} />
+                  <Route path="channels/:channelId" element={<ChannelPage />} />
+                </Route>
               </Route>
               <Route
                 path="app"

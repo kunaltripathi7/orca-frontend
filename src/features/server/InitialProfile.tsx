@@ -14,7 +14,7 @@ function InitialProfile() {
 
   useEffect(() => {
     if (servers && servers.length > 0)
-      navigate(`/server/${servers[0].id}`, { replace: true });
+      navigate(`/servers/${servers[0].id}`, { replace: true });
   }, [servers, navigate]);
 
   return (

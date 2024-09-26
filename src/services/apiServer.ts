@@ -6,7 +6,7 @@ export async function getServersRequest(
   getToken: TokenType,
 ): Promise<ServerType[] | null> {
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/server`, {
+    const response = await axios.get(`${API_BASE_URL}/api/servers`, {
       headers: {
         Authorization: `Bearer ${await getToken()}`,
       },
@@ -30,7 +30,7 @@ export async function createServerRequest(
 ): Promise<AxiosResponse> {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/api/server/${userId}`,
+      `${API_BASE_URL}/api/servers/${userId}`,
       ServerData,
       {
         headers: {
@@ -52,7 +52,7 @@ export async function editServerRequest(
   if (!serverId) return;
   try {
     const response = await axios.patch(
-      `${API_BASE_URL}/api/server/${serverId}`,
+      `${API_BASE_URL}/api/servers/${serverId}`,
       ServerData,
       {
         headers: {
@@ -73,7 +73,7 @@ export async function getServerByIdRequest(
   if (!serverId) return;
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/api/server/by-id/${serverId}`,
+      `${API_BASE_URL}/api/servers/by-id/${serverId}`,
       {
         headers: {
           Authorization: `Bearer ${await getToken()}`,
@@ -101,7 +101,7 @@ export async function getInviteCodeRequest(
   if (!serverId) return;
   try {
     const response = await axios.patch(
-      `${API_BASE_URL}/api/server/${serverId}/invite-code`,
+      `${API_BASE_URL}/api/servers/${serverId}/invite-code`,
       {},
       {
         headers: {
@@ -122,7 +122,7 @@ export async function joinServerRequest(
   if (!inviteCode) return;
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/api/server/invite/${inviteCode}`,
+      `${API_BASE_URL}/api/servers/invite/${inviteCode}`,
       {
         headers: {
           Authorization: `Bearer ${await getToken()}`,
@@ -150,7 +150,7 @@ export async function leaveServerRequest(
   if (!serverId) return;
   try {
     const response = await axios.patch(
-      `${API_BASE_URL}/api/server/${serverId}/leave`,
+      `${API_BASE_URL}/api/servers/${serverId}/leave`,
       {},
       {
         headers: {
@@ -171,7 +171,7 @@ export async function deleteServerRequest(
   if (!serverId) return;
   try {
     const response = await axios.delete(
-      `${API_BASE_URL}/api/server/${serverId}`,
+      `${API_BASE_URL}/api/servers/${serverId}`,
       {
         headers: {
           Authorization: `Bearer ${await getToken()}`,

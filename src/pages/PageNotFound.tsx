@@ -1,11 +1,15 @@
 import Heading from "@/components/Heading";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 function PageNotFound() {
+  const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center h-screen justify-center gap-10">
+    <div className="flex h-screen flex-col items-center justify-center gap-10">
       <Heading className="text-6xl">404 Page Not Found</Heading>
-      <Button variant="primary">Go Back</Button>
+      <Button variant="primary" onClick={() => navigate(-1)}>
+        Go Back
+      </Button>
     </div>
   );
 }

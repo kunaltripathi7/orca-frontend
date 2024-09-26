@@ -13,7 +13,7 @@ const Servers = ({ servers }: Props) => {
   const navigate = useNavigate();
   const { serverId } = useParams();
   const handleClick = (serverId: string) => {
-    navigate(`server/${serverId}`);
+    navigate(`servers/${serverId}`);
   };
 
   return (
