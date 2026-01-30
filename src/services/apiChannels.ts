@@ -1,5 +1,5 @@
-import { ServerType, TokenType } from "@/utils/types";
-import axios from "axios";
+import { ChannelType, ErrorCode, ServerType, TokenType } from "@/utils/types";
+import axios, { AxiosError } from "axios";
 import qs from "query-string";
 import { API_BASE_URL } from "./apiUser";
 
@@ -82,7 +82,7 @@ export async function getChannelRequest(
   serverId: string | undefined,
   channelId: string | undefined,
   getToken: TokenType,
-): Promise<ServerType | undefined> {
+): Promise<ChannelType | undefined> {
   if (!serverId || !channelId) return;
   const url = qs.stringifyUrl({
     url: `${API_BASE_URL}/api/channels/${channelId}`,
@@ -97,7 +97,14 @@ export async function getChannelRequest(
       },
     });
     return res.data;
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      const errorCode = error.response?.data.errorCode as ErrorCode;
+      if (errorCode === 1001) {
+        throw new Error("1001");
+      }
+    }
     throw new Error("Couldn't able to get the channel at this moment!");
   }
 }
+

@@ -45,13 +45,13 @@ const ServerSidebar = ({ data, isLoading, user, iconMap, server }: Props) => {
       <div className="hidden h-full w-[288px] flex-col bg-[#2C2F48]/50 text-primary md:flex">
         {isLoading ? (
           <div className="mx-3 mt-2 flex flex-col items-start">
-            <Skeleton width={200} height={20} />
+            <Skeleton width={185} height={20} />
             <Skeleton height={15} width={70} className="mt-6" />
-            <Skeleton width={200} height={15} />
+            <Skeleton width={185} height={15} />
             <Skeleton height={15} width={70} className="mt-8" />
-            <Skeleton width={200} height={15} />
+            <Skeleton width={185} height={15} />
             <Skeleton height={15} width={70} className="mt-8" />
-            <Skeleton width={200} height={15} />
+            <Skeleton width={185} height={15} />
           </div>
         ) : (
           <>

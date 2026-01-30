@@ -93,3 +93,36 @@ export enum MemberRole {
   MODERATOR = "MODERATOR",
   GUEST = "GUEST",
 }
+
+export type MessageType = {
+  id: string;
+  content: string;
+  fileUrl: string | null;
+  memberId: string;
+  channelId: string;
+  deleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+  member: MemberType;
+};
+
+export type DirectMessageType = {
+  id: string;
+  content: string;
+  fileUrl: string | null;
+  memberId: string;
+  conversationId: string;
+  deleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+  member: MemberType;
+};
+
+export type ConversationType = {
+  id: string;
+  memberOneId: string;
+  memberTwoId: string;
+  memberOne: MemberType;
+  memberTwo: MemberType;
+};
+

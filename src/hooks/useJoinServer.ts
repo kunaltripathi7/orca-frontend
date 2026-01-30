@@ -31,7 +31,7 @@ export function useJoinServer() {
             description: "You are already a member",
             variant: "destructive",
           });
-        } else navigate(`/server/${response.id}`);
+        } else navigate(`/servers/${response.id}`);
       },
     },
   );

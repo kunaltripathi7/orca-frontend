@@ -1,4 +1,8 @@
+import { useGetChannel } from "@/features/channels/useGetChannel";
 import ChatNavbar from "@/features/chat/ChatNavbar";
+import ChatMessages from "@/features/chat/ChatMessages";
+import ChatInput from "@/features/chat/ChatInput";
+import MediaRoom from "@/features/chat/MediaRoom";
 import MemberSidebar from "@/features/members/MemberSidebar";
 import {
   ChannelModeType,
@@ -15,13 +19,14 @@ export interface ChannelContextType {
   audioChannels: ChannelType[];
   textChannels: ChannelType[];
   members: MemberType[];
+  currentMember: MemberType;
 }
 
 const ChannelPage = () => {
   const { serverId, channelId } = useParams();
-  const { videoChannels, audioChannels, textChannels, members } =
+  const { videoChannels, audioChannels, textChannels, members, currentMember } =
     useOutletContext<ChannelContextType>();
-  const { channel, member } = use;
+  const { channel } = useGetChannel();
 
   const [open, setOpen] = useState<boolean>(false);
   const iconMap = {
@@ -38,10 +43,14 @@ const ChannelPage = () => {
     [MemberRole.ADMIN]: <ShieldAlert className="mr-2 h-4 w-4 text-rose-500" />,
   };
 
+  const isTextChannel = channel?.type === ChannelModeType.TEXT;
+  const isAudioChannel = channel?.type === ChannelModeType.AUDIO;
+  const isVideoChannel = channel?.type === ChannelModeType.VIDEO;
+
   return (
-    <div className="h-full w-full bg-[#1D203E]">
+    <div className="flex h-full w-full flex-col bg-[#1D203E]">
       <ChatNavbar
-        label="general"
+        label={channel?.name}
         type="channel"
         handleSidebar={setOpen}
         dataObj={[
@@ -83,9 +92,50 @@ const ChannelPage = () => {
           },
         ]}
       />
-      {open && <MemberSidebar members={members} roleIconMap={roleIconMap} />}
+
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 flex-col">
+          {isTextChannel && channelId && serverId && currentMember && (
+            <>
+              <ChatMessages
+                name={channel?.name || ""}
+                member={currentMember}
+                channelId={channelId}
+                serverId={serverId}
+                type="channel"
+              />
+              <ChatInput
+                channelId={channelId}
+                serverId={serverId}
+                type="channel"
+                name={channel?.name || ""}
+              />
+            </>
+          )}
+
+          {isAudioChannel && channelId && (
+            <MediaRoom
+              channelId={channelId}
+              video={false}
+              audio={true}
+            />
+          )}
+
+          {isVideoChannel && channelId && (
+            <MediaRoom
+              channelId={channelId}
+              video={true}
+              audio={true}
+            />
+          )}
+        </div>
+
+        {open && <MemberSidebar members={members} roleIconMap={roleIconMap} />}
+      </div>
     </div>
   );
 };
 
 export default ChannelPage;
+
+

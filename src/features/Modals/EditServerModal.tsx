@@ -50,7 +50,10 @@ const EditServerModal = () => {
   const { isOpen, type, server } = useModal();
   const dispatch = useDispatch();
   const location = useLocation();
-  const match = matchPath({ path: "/server/:serverId" }, location.pathname);
+  const match = matchPath(
+    { path: "/servers/:serverId/channels/:channelId" },
+    location.pathname,
+  );
 
   const isModalOpen = isOpen && type === "editServer";
   const handleClose = () => {

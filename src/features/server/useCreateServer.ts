@@ -29,7 +29,7 @@ export function useCreateServer() {
       },
       onSuccess: (response: AxiosResponse) => {
         const id = response.data.id;
-        if (id) navigate(`/server/${id}`, { replace: true });
+        if (id) navigate(`/servers/${id}`, { replace: true });
         queryClient.invalidateQueries({ queryKey: ["getServers"] });
         dispatch(closeModal());
       },

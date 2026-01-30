@@ -16,6 +16,7 @@ import { ModalProvider } from "./components/providers/ModalProvider";
 import ServerInvite from "./pages/ServerInvite";
 import ChannelPage from "./pages/ChannelPage";
 import ServerIdPage from "./pages/ServerIdPage";
+import ConversationPage from "./pages/ConversationPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,10 +43,10 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                {/* index -> parent route */}
                 <Route path="servers/:serverId" element={<Server />}>
                   <Route index element={<ServerIdPage />} />
                   <Route path="channels/:channelId" element={<ChannelPage />} />
+                  <Route path="conversations/:conversationId" element={<ConversationPage />} />
                 </Route>
               </Route>
               <Route
@@ -69,6 +70,3 @@ function App() {
 
 export default App;
 
-{
-  /* <ReactQueryDevtools initialIsOpen={false} /> */
-}

@@ -11,7 +11,7 @@ import { useMemo } from "react";
 
 import { Hash, Mic, Video } from "lucide-react";
 import { useUser } from "@/features/auth/useUser";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 function Server() {
   const {
@@ -25,6 +25,7 @@ function Server() {
   const { isLoading: isUserLoading, currentUser } = useUser();
   const isLoading = isUserLoading || isServerLoading;
   const navigate = useNavigate();
+  const { channelId } = useParams();
 
   const textChannels = useMemo(
     () =>
@@ -58,6 +59,14 @@ function Server() {
     [server?.members, currentUser?.id],
   );
 
+  const currentMember = useMemo(
+    () =>
+      server?.members?.find(
+        (member: MemberType) => member.profileId === currentUser?.id,
+      ),
+    [server?.members, currentUser?.id],
+  );
+
   const members = useMemo(
     () =>
       server?.members?.filter(
@@ -73,13 +82,13 @@ function Server() {
   };
 
   useEffect(() => {
-    if (server) {
+    if (server && !channelId) {
       const channelId = server?.channels?.find(
         (channel) => channel?.name === "general",
       )?.id;
       navigate(`channels/${channelId}`);
     }
-  }, [server, navigate]);
+  }, [server, navigate, channelId]);
 
   return (
     <>
@@ -101,6 +110,7 @@ function Server() {
               audioChannels,
               textChannels,
               members,
+              currentMember,
               iconMap,
             }}
           />
@@ -111,3 +121,4 @@ function Server() {
 }
 
 export default Server;
+

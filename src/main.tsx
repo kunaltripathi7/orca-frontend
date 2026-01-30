@@ -6,8 +6,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import App from "./App";
 import ErrorFallBack from "./components/ErrorFallBack";
 import { dark } from "@clerk/themes";
+import { SocketProvider } from "./context/SocketProvider";
 
-// Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
@@ -27,8 +27,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           baseTheme: dark,
         }}
       >
-        <App />
+        <SocketProvider>
+          <App />
+        </SocketProvider>
       </ClerkProvider>
     </ErrorBoundary>
   </React.StrictMode>,
 );
+

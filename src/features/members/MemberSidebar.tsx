@@ -19,7 +19,7 @@ const MemberSidebar = ({ members, roleIconMap }: Props) => {
   const { serverId, memberId } = useParams();
   const navigate = useNavigate();
   return (
-    <div className="w-60 bg-[#2C2F48] text-white/90">
+    <div className="ml-auto h-full w-[190px] bg-[#2C2F48] text-white/90">
       <>
         {members?.length ? (
           members?.map((member) => {
@@ -50,7 +50,7 @@ const MemberSidebar = ({ members, roleIconMap }: Props) => {
             );
           })
         ) : (
-          <div className="mt-10 px-1 text-center">
+          <div className="px-1 py-5 text-center">
             <p className="text-balance font-lato text-[13px] leading-5 tracking-wide">
               Looks like you're all alone here. Invite some friends to join!"
             </p>

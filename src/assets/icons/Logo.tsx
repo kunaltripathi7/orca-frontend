@@ -69,12 +69,12 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(21.6835 19.8136) rotate(35.2605) scale(29.0182 38.102)"
         >
-          <stop offset="0.101333" stop-color="#612566" />
-          <stop offset="0.12497" stop-color="#ED6A84" />
-          <stop offset="0.396084" stop-color="#9E235F" />
-          <stop offset="0.509199" stop-color="#612566" />
-          <stop offset="0.58545" stop-color="#2C1842" />
-          <stop offset="0.865758" stop-color="#21142C" />
+          <stop offset="0.101333" stopColor="#612566" />
+          <stop offset="0.12497" stopColor="#ED6A84" />
+          <stop offset="0.396084" stopColor="#9E235F" />
+          <stop offset="0.509199" stopColor="#612566" />
+          <stop offset="0.58545" stopColor="#2C1842" />
+          <stop offset="0.865758" stopColor="#21142C" />
         </radialGradient>
         <radialGradient
           id="paint1_angular_528_5689"
@@ -84,12 +84,12 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(24.0982 21.4661) rotate(-31.3229) scale(21.2003 34.3807)"
         >
-          <stop offset="0.101333" stop-color="#612566" />
-          <stop offset="0.12497" stop-color="#ED6A84" />
-          <stop offset="0.396084" stop-color="#9E235F" />
-          <stop offset="0.509199" stop-color="#612566" />
-          <stop offset="0.58545" stop-color="#2C1842" />
-          <stop offset="0.865758" stop-color="#21142C" />
+          <stop offset="0.101333" stopColor="#612566" />
+          <stop offset="0.12497" stopColor="#ED6A84" />
+          <stop offset="0.396084" stopColor="#9E235F" />
+          <stop offset="0.509199" stopColor="#612566" />
+          <stop offset="0.58545" stopColor="#2C1842" />
+          <stop offset="0.865758" stopColor="#21142C" />
         </radialGradient>
         <radialGradient
           id="paint2_angular_528_5689"
@@ -99,12 +99,12 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(24.0982 21.4661) rotate(-31.3229) scale(21.2003 34.3807)"
         >
-          <stop offset="0.101333" stop-color="#612566" />
-          <stop offset="0.12497" stop-color="#ED6A84" />
-          <stop offset="0.396084" stop-color="#9E235F" />
-          <stop offset="0.509199" stop-color="#612566" />
-          <stop offset="0.58545" stop-color="#2C1842" />
-          <stop offset="0.865758" stop-color="#21142C" />
+          <stop offset="0.101333" stopColor="#612566" />
+          <stop offset="0.12497" stopColor="#ED6A84" />
+          <stop offset="0.396084" stopColor="#9E235F" />
+          <stop offset="0.509199" stopColor="#612566" />
+          <stop offset="0.58545" stopColor="#2C1842" />
+          <stop offset="0.865758" stopColor="#21142C" />
         </radialGradient>
         <radialGradient
           id="paint3_angular_528_5689"
@@ -114,12 +114,12 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(23.1995 33.5473) rotate(54.3486) scale(19.0784 10.2935)"
         >
-          <stop offset="0.000195603" stop-color="#2C1842" />
-          <stop offset="0.0990559" stop-color="#21142C" />
-          <stop offset="0.220158" stop-color="#080808" />
-          <stop offset="0.381095" stop-color="#ED6A84" />
-          <stop offset="0.589726" stop-color="#9E235F" />
-          <stop offset="0.6817" stop-color="#612566" />
+          <stop offset="0.000195603" stopColor="#2C1842" />
+          <stop offset="0.0990559" stopColor="#21142C" />
+          <stop offset="0.220158" stopColor="#080808" />
+          <stop offset="0.381095" stopColor="#ED6A84" />
+          <stop offset="0.589726" stopColor="#9E235F" />
+          <stop offset="0.6817" stopColor="#612566" />
         </radialGradient>
         <radialGradient
           id="paint4_angular_528_5689"
@@ -129,12 +129,12 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(23.1995 33.5473) rotate(54.3486) scale(19.0784 10.2935)"
         >
-          <stop offset="0.000195603" stop-color="#2C1842" />
-          <stop offset="0.0990559" stop-color="#21142C" />
-          <stop offset="0.220158" stop-color="#080808" />
-          <stop offset="0.381095" stop-color="#ED6A84" />
-          <stop offset="0.589726" stop-color="#9E235F" />
-          <stop offset="0.6817" stop-color="#612566" />
+          <stop offset="0.000195603" stopColor="#2C1842" />
+          <stop offset="0.0990559" stopColor="#21142C" />
+          <stop offset="0.220158" stopColor="#080808" />
+          <stop offset="0.381095" stopColor="#ED6A84" />
+          <stop offset="0.589726" stopColor="#9E235F" />
+          <stop offset="0.6817" stopColor="#612566" />
         </radialGradient>
         <linearGradient
           id="paint5_linear_528_5689"
@@ -144,8 +144,8 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           y2="45.249"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#C441F4" />
-          <stop offset="1" stop-color="#00DAEA" />
+          <stop stopColor="#C441F4" />
+          <stop offset="1" stopColor="#00DAEA" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_528_5689"
@@ -155,7 +155,7 @@ const Logo = ({ className = "w-40 h-40" }: Props) => {
           y2="40"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
+          <stop stopColor="white" />
           <stop offset="1" stopColor="#2596FF" stopOpacity="0.79" />
         </linearGradient>
         <clipPath id="clip0_528_5689">
