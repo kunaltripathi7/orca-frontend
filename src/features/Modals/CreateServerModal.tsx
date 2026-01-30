@@ -34,7 +34,7 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Server name is required",
   }),
-  imageFile: z.instanceof(File, { message: "Image is required" }),
+  imageFile: z.instanceof(File).optional(),
 });
 
 const CreateServerModal = () => {
@@ -59,7 +59,7 @@ const CreateServerModal = () => {
 
   const onSubmit = (values: ServerData) => {
     const formData = new FormData();
-    formData.append("imageFile", values.imageFile);
+    if (values.imageFile) formData.append("imageFile", values.imageFile);
     formData.append("name", values.name);
     createServer(formData);
   };
