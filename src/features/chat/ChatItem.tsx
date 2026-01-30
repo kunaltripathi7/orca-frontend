@@ -14,7 +14,6 @@ interface ChatItemProps {
     deleted: boolean;
     currentMember: MemberType;
     isUpdated: boolean;
-    type: "channel" | "conversation";
     onEdit?: (messageId: string, content: string) => void;
     onDelete?: (messageId: string) => void;
 }
@@ -36,7 +35,6 @@ const ChatItem = ({
     deleted,
     currentMember,
     isUpdated,
-    type,
     onEdit,
     onDelete,
 }: ChatItemProps) => {

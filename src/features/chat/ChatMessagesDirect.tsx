@@ -171,7 +171,6 @@ const ChatMessagesDirect = ({
                         deleted={message.deleted}
                         currentMember={member}
                         isUpdated={message.createdAt !== message.updatedAt}
-                        type={type}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                     />
