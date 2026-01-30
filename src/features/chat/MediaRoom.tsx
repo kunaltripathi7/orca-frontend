@@ -61,6 +61,12 @@ const MediaRoom = ({ channelId, video, audio }: MediaRoomProps) => {
     }, [video, audio]);
 
     useEffect(() => {
+        if (localVideoRef.current && localStream) {
+            localVideoRef.current.srcObject = localStream;
+        }
+    }, [localStream, isConnecting]);
+
+    useEffect(() => {
         if (!socket || !isConnected || !localStream) return;
 
         socket.emit("webrtc:join", {
