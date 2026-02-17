@@ -39,7 +39,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
             try {
                 const token = await getToken();
 
-                const socketInstance = io(import.meta.env.VITE_API_URL || "http://localhost:7000", {
+                const socketInstance = io(import.meta.env.VITE_API_BASE_URL || "http://localhost:7000", {
                     auth: { token },
                     transports: ["websocket", "polling"],
                     reconnection: true,
