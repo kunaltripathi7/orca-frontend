@@ -40,7 +40,7 @@ function Hero() {
         </div>
         <div className="mt-10 flex justify-center">
           <div className="relative inline-flex">
-            <h1 className="inline-flex text-center text-3xl font-bold tracking-tighter sm:text-5xl lg:text-7xl">
+            <h1 className="inline-flex text-center text-2xl font-bold tracking-tighter sm:text-5xl lg:text-7xl">
               Where Conversations and
               <br />
               Communities Thrive

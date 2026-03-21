@@ -4,7 +4,9 @@ import { Outlet } from "react-router-dom";
 const AppLayout = () => {
   return (
     <div className="flex h-screen bg-gradient-to-b from-[#7758D1] to-[#F7CBFD]">
-      <NavigationSidebar />
+      <div className="hidden md:block">
+        <NavigationSidebar />
+      </div>
       <Outlet />
     </div>
   );

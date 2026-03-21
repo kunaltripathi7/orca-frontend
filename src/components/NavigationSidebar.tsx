@@ -14,7 +14,7 @@ const NavigationSidebar = () => {
     useAllServers();
 
   return (
-    <div className="inset-y-0 hidden h-full flex-col justify-between md:flex">
+    <div className="inset-y-0 flex h-full flex-col justify-between">
       <div className="flex h-full">
         <div className="scrollbar-hidden flex h-full w-[72px] flex-col items-center justify-between bg-[#1D203E]/30 pt-2">
           {isLoading ? (

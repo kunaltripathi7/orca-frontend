@@ -1,4 +1,5 @@
 import ServerSearch from "@/components/ServerSearch";
+import MobileToggle from "@/components/MobileToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Hash } from "lucide-react";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -31,7 +32,7 @@ const ChatNavbar = ({
   imageUrl,
 }: Props) => {
   return (
-    <div className="flex h-12 items-center justify-between border bg-[#2C2F48] px-4 shadow-sm shadow-neutral-700/70">
+    <div className="flex h-12 items-center justify-between border-b bg-[#2C2F48] px-2 shadow-sm shadow-neutral-700/70 md:px-4">
       {!label ? (
         <Skeleton
           baseColor="#1C134F"
@@ -41,6 +42,7 @@ const ChatNavbar = ({
         />
       ) : (
         <h4 className="flex items-center font-lato font-bold text-zinc-200">
+          <MobileToggle />
           {type === "channel" && (
             <Hash className="mr-2 h-5 w-5 text-zinc-200" />
           )}

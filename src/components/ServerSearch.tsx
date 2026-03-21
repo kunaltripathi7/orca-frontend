@@ -52,12 +52,12 @@ const ServerSearch = ({ dataObj }: Props) => {
   return (
     <>
       <button
-        className="group mx-1 my-1 mr-32 flex w-52 items-center gap-x-2 rounded-md bg-[#151130]/70 px-2 py-[6px] text-zinc-300 transition hover:bg-[#1c134f]"
+        className="group flex items-center gap-x-2 rounded-md bg-[#151130]/70 p-2 text-zinc-300 transition hover:bg-[#1c134f] md:mx-1 md:my-1 md:w-52 md:px-2 md:py-[6px]"
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4" />
-        <p className="text-sm transition group-hover:text-zinc-200">Search</p>
-        <kbd className="pointer-events-none ml-auto inline-flex select-none items-center gap-x-1 rounded border bg-muted px-1.5 font-lato text-[10px] font-medium text-muted-foreground">
+        <p className="hidden text-sm transition group-hover:text-zinc-200 md:block">Search</p>
+        <kbd className="pointer-events-none ml-auto hidden select-none items-center gap-x-1 rounded border bg-muted px-1.5 font-lato text-[10px] font-medium text-muted-foreground md:inline-flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </button>

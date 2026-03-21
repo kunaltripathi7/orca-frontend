@@ -42,7 +42,7 @@ const ServerSidebar = ({ data, isLoading, user, iconMap, server }: Props) => {
 
   return (
     <SkeletonTheme baseColor="#6c55ab" highlightColor="#8C75D1">
-      <div className="hidden h-full w-[288px] flex-col bg-[#2C2F48]/50 text-primary md:flex">
+      <div className="flex h-full w-full flex-col bg-[#2C2F48]/50 text-primary md:w-[288px]">
         {isLoading ? (
           <div className="mx-3 mt-2 flex flex-col items-start">
             <Skeleton width={185} height={20} />

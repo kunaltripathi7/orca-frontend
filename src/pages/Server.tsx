@@ -92,16 +92,18 @@ function Server() {
 
   return (
     <>
-      <ServerSidebar
-        server={server}
-        isLoading={isLoading}
-        user={currentUser?.name}
-        iconMap={iconMap}
-        data={{
-          channels: { textChannels, audioChannels, videoChannels },
-          role,
-        }}
-      />
+      <div className="hidden md:flex">
+        <ServerSidebar
+          server={server}
+          isLoading={isLoading}
+          user={currentUser?.name}
+          iconMap={iconMap}
+          data={{
+            channels: { textChannels, audioChannels, videoChannels },
+            role,
+          }}
+        />
+      </div>
       <div className="flex w-full flex-col">
         <div className="flex h-full">
           <Outlet

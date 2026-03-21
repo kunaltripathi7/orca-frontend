@@ -19,7 +19,7 @@ const MemberSidebar = ({ members, roleIconMap }: Props) => {
   const { serverId, memberId } = useParams();
   const navigate = useNavigate();
   return (
-    <div className="ml-auto h-full w-[190px] bg-[#2C2F48] text-white/90">
+    <div className="ml-auto hidden h-full w-[190px] bg-[#2C2F48] text-white/90 md:block">
       <>
         {members?.length ? (
           members?.map((member) => {

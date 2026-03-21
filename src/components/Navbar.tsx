@@ -12,10 +12,10 @@ const FORCE_REDIRECT_URL = import.meta.env.VITE_CLERK_FORCE_REDIRECT_URL;
 function Navbar() {
   const { isSignedIn, isLoaded } = useAuth();
   return (
-    <div className="container flex h-20 min-w-[350px] flex-row items-center justify-between">
+    <div className="container flex h-20 min-w-[300px] flex-row items-center justify-between px-4">
       <div className="flex items-center gap-4">
-        <img src={logoImage} alt="Brand Logo" className="mt-2 h-12 w-12" />
-        <span className="text-5xl font-bold text-[#AF79F9]">Orca</span>
+        <img src={logoImage} alt="Brand Logo" className="mt-2 h-10 w-10 sm:h-12 sm:w-12" />
+        <span className="text-3xl font-bold text-[#AF79F9] sm:text-5xl">Orca</span>
       </div>
 
       <div

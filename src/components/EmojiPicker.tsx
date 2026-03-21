@@ -32,7 +32,7 @@ const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
                 <Smile className="h-5 w-5" />
             </button>
             {isOpen && (
-                <div className="absolute bottom-12 right-0 z-50">
+                <div className="absolute bottom-12 right-0 z-50 max-w-[calc(100vw-2rem)]">
                     <Picker
                         theme="dark"
                         data={data}
