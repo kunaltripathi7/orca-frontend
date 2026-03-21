@@ -45,8 +45,8 @@ const ServerSearch = ({ dataObj }: Props) => {
 
   const onClick = ({ id, type }: { id: string; type: string }) => {
     setOpen(false);
-    if (type === "channel") navigate(`/server/${serverId}/channels/${id}`);
-    if (type === "member") navigate(`/server/${serverId}/conversations/${id}`);
+    if (type === "channel") navigate(`/servers/${serverId}/channels/${id}`);
+    if (type === "member") navigate(`/servers/${serverId}/conversations/${id}`);
   };
 
   return (
